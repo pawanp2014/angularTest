@@ -1,0 +1,247 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="maincontent">
+        <app-patient [steps]="{'steps':steps,'pageNo':general}"></app-patient>
+
+
+
+        <div class="formBlock">
+          <form [formGroup]="generalForm" (submit)="generalSubmit()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-users.png" alt="" />
+                    </figure>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="form-group">
+                      <label>{{"tab.general.fname" | translate}} <em>*</em></label>
+                      <input type="text" autofocus formControlName="fname" name="fname" placeholder="{{'tab.general.fname' | translate}}" required
+                        maxlength="50" />
+                      <p class="error" *ngIf="generalForm.controls['fname'].hasError('required') && isSubmited">
+                        {{"tab.general.fname" | translate}}
+                      </p>
+                      <p class="error" *ngIf="generalForm.controls['fname'].hasError('maxlength') && isSubmited">
+                        {{"tab.general.fname_length" | translate}}
+                      </p>
+                      <p class="error" *ngIf="generalForm.controls['fname'].hasError('pattern') && isSubmited">
+                        {{"tab.general.fname_valid" | translate}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-users.png" alt="" />
+                    </figure>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="form-group">
+                      <label>{{"tab.general.lname" | translate}}<em>*</em></label>
+                      <input type="text" formControlName="lname" name="lname" placeholder="{{'tab.general.lname' | translate}}" required maxlength="50"
+                      />
+                      <p class="error" *ngIf="generalForm.controls['lname'].hasError('required') && isSubmited">
+                        {{"tab.general.lname" | translate}}
+                      </p>
+                      <p class="error" *ngIf="generalForm.controls['lname'].hasError('maxlength') && isSubmited">
+                        {{"tab.general.lname_length" | translate}}
+                      </p>
+                      <p class="error" *ngIf="generalForm.controls['lname'].hasError('pattern') && isSubmited">
+                        {{"tab.general.lname_valid" | translate}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-calendar.png" alt="" />
+                    </figure>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="form-group">
+                      <label> {{"tab.general.dob" | translate}}<em>*</em></label>
+                      <p-calendar formControlName="dob" dataType=string dateFormat="MM dd, yy" [showOtherMonths]=true [monthNavigator]=true [maxDate]="maxdate"
+                        [locale]="selectedLang" [yearNavigator]=true [yearRange]="('1940:1997')"></p-calendar>
+                      <p class="error" *ngIf="generalForm.controls['dob'].hasError('required') && isSubmited">
+                        {{"tab.general.dob_required" | translate}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-phone.png" alt="" />
+                    </figure>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="form-group">
+                      <label>{{"tab.general.phone" | translate}}<em>*</em></label>
+                      <p-inputMask mask="(999) 999-9999" formControlName="phone" placeholder="(999) 999-9999"></p-inputMask>
+                      <p class="error" *ngIf="generalForm.controls['phone'].hasError('required') && isSubmited">
+                        {{"tab.general.phone_required" | translate}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-length.png" alt="" />
+                    </figure>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group marB10">
+                          <label>{{"tab.general.tall" | translate}}<em>*</em></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>{{"tab.general.Feet" | translate}}<em>*</em></label>
+                          <input type="text" numberOnly formControlName="heightft" name="heightft" placeholder="{{'tab.general.Feet' | translate}}"
+                            required maxlength="1" />
+                          <p class="error" *ngIf="generalForm.controls['heightft'].hasError('required') && isSubmited">
+                            {{"tab.general.Feet_required" | translate}}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label> {{"tab.general.Inches" | translate}}<em>*</em></label>
+                          <!-- <select formControlName="heightinch" name="heightinch" class="form-control">
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                            </select>  -->
+                           <input type="text" incheValid formControlName="heightinch" name="heightinch" placeholder=" {{'tab.general.Inches' | translate}}"
+                            required maxlength="2" />
+                          <p class="error" *ngIf="generalForm.controls['heightinch'].hasError('required') && isSubmited">
+                            {{"tab.general.Inches_required" | translate}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-weight.png" alt="" />
+                    </figure>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="form-group">
+                      <label>{{"tab.general.weight" | translate}}<em>*</em></label>
+                      <label class="weight-lbl">{{"profile.weight" | translate}}</label>
+                      <input type="text" weightValid formControlName="weight" name="weight" placeholder="{{'tab.general.weight_total' | translate}}"
+                        required maxlength="3" />
+                      <p class="error" *ngIf="generalForm.controls['weight'].hasError('required') && isSubmited">
+                        {{"tab.general.weight_total_required" | translate}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6 gendr-check-outer">
+                <div class="row">
+                  <div class="col-md-1 padR0">
+                    <figure class="fieldIcons">
+                      <img src="../../../assets/images/icon-gender.png" alt="" />
+                    </figure>
+                  </div>
+
+                  <div class="col-md-11">
+                    <div class="row">
+                      <div class="col-md-12 gendr-check-lbl-outer">
+                        <div class="form-group marB10">
+                          <label class=""> {{"tab.general.sex" | translate}}<em>*</em></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group marB10">
+                      <label class="control-label radioLabel"> {{"tab.general.male" | translate}}
+                        <input type="radio" formControlName="gender" value="Male" />
+                        <span class="radiomark"></span>
+                      </label>
+
+                      <label class="control-label radioLabel"> {{"tab.general.female" | translate}}
+                        <input type="radio" formControlName="gender" value="Female" />
+                        <span class="radiomark"></span>
+                      </label>
+
+                      <label class="control-label radioLabel"> {{"tab.general.rather_not_say" | translate}}
+                        <input type="radio" formControlName="gender" value="Rather" />
+                        <span class="radiomark"></span>
+                      </label>
+
+                      <label class="control-label radioLabel"> {{"tab.general.other" | translate}}
+                        <input type="radio" formControlName="gender" value="Other" />
+                        <span class="radiomark"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <button type="submit" class="next-Btn">
+                  <span> {{"button.Next" | translate}}</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
